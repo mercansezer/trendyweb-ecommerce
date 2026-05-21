@@ -44,22 +44,23 @@ export default function Navbar() {
   };
   return (
     <nav className="w-full bg-white shadow-sm sticky top-0 z-[100]">
-      {/* Top Bar */}
-      <div className="bg-[#f3f3f3] py-1.5 text-center text-[11px] text-gray-600">
+      {/* Top Bar - Mobilde gizlendi (hidden md:block) */}
+      <div className="hidden md:block bg-[#f3f3f3] py-1.5 text-center text-[11px] text-gray-600">
         İndirim Kuponlarım | Yardım & Destek | Ücretsiz Kargo
       </div>
 
-      <div className="container mx-auto max-w-[1200px] px-4 py-4">
-        <div className="flex items-center gap-8">
+      <div className="container mx-auto max-w-[1200px] px-4 py-3 md:py-4">
+        {/* Ana Satır: Logo, Arama Çubuğu (Desktop) ve İkonlar */}
+        <div className="flex items-center justify-between md:justify-start gap-4 md:gap-8">
           {/* Logo */}
           <Link href="/" className="shrink-0">
-            <span className="text-2xl font-black tracking-tighter text-[#F27A1A]">
+            <span className="text-xl md:text-2xl font-black tracking-tighter text-[#F27A1A]">
               TRENDY<span className="text-black">WEB</span>
             </span>
           </Link>
 
-          {/* Search Bar */}
-          <div className="relative flex-1 group">
+          {/* Search Bar - Desktop Yapısı Aynen Korundu, Mobilde Aşağı Alındı (hidden md:block) */}
+          <div className="relative flex-1 group hidden md:block">
             <input
               type="text"
               placeholder="Aradığınız ürün, kategori veya markayı yazınız"
@@ -71,13 +72,12 @@ export default function Navbar() {
             />
           </div>
 
-          {/* User Actions */}
-          <div className="flex items-center gap-6 shrink-0">
+          {/* User Actions - Gap mobilde daraltıldı (gap-4 md:gap-6) */}
+          <div className="flex items-center gap-4 md:gap-6 shrink-0">
             {/* 1. GİRİŞ / PROFİL ALANI */}
             {isAuthenticated ? (
-              // Giriş yapılmışsa (Yapı ve CSS senin yazdığınla aynı)
-              <div className="group relative flex flex-col items-center gap-1 cursor-pointer mt-[8px]">
-                {/* Ana Buton Alanı - Görsel yapı aynı kaldı */}
+              <div className="group relative flex flex-col items-center gap-1 cursor-pointer mt-[4px] md:mt-[8px]">
+                {/* Ana Buton Alanı */}
                 <div className="flex flex-col items-center gap-1 pb-2">
                   <div className="w-5 h-5 rounded-full overflow-hidden border border-gray-200">
                     <img
@@ -89,24 +89,20 @@ export default function Navbar() {
                       className="w-full h-full object-cover"
                     />
                   </div>
-                  <span className="text-[11px] font-bold text-gray-700 group-hover:text-[#F27A1A]">
+                  {/* Yazı mobilde gizlendi, desktopta açılıyor (hidden md:block) */}
+                  <span className="hidden md:block text-[11px] font-bold text-gray-700 group-hover:text-[#F27A1A]">
                     Hesabım
                   </span>
                 </div>
 
-                {/* Dropdown Menü - Sadece Hover durumunda görünür */}
-                <div className="absolute top-[45px] -right-10 hidden group-hover:block w-52 bg-white border border-gray-100 shadow-[0_10px_25px_rgba(0,0,0,0.1)] rounded-md py-2 z-[110]">
-                  {/* Mouse kayarken kapanmaması için görünmez köprü */}
+                {/* Dropdown Menü - Desktop yapısıyla birebir aynı */}
+                <div className="absolute top-[35px] md:top-[45px] -right-10 hidden group-hover:block w-52 bg-white border border-gray-100 shadow-[0_10px_25px_rgba(0,0,0,0.1)] rounded-md py-2 z-[110]">
                   <div className="absolute -top-4 left-0 w-full h-4 bg-transparent" />
-
-                  {/* Kullanıcı Bilgisi */}
                   <div className="px-4 py-2 border-b border-gray-50 mb-1">
                     <p className="text-[12px] font-bold text-gray-800 truncate">
                       {user?.firstName} {user?.lastName}
                     </p>
                   </div>
-
-                  {/* Menü Linkleri */}
                   <div className="flex flex-col">
                     <button className="px-4 py-2 text-[12px] text-gray-600 hover:text-[#F27A1A] hover:bg-orange-50 text-left transition-colors cursor-pointer">
                       Siparişlerim
@@ -117,9 +113,7 @@ export default function Navbar() {
                     <button className="px-4 py-2 text-[12px] text-gray-600 hover:text-[#F27A1A] hover:bg-orange-50 text-left transition-colors cursor-pointer">
                       Şifre Değiştir
                     </button>
-
                     <div className="h-[1px] bg-gray-50 my-1" />
-
                     <button
                       onClick={handleLogout}
                       className="flex items-center gap-2 px-4 py-2 text-[11px] font-bold text-red-500 hover:bg-red-50 transition-colors cursor-pointer"
@@ -130,7 +124,6 @@ export default function Navbar() {
                 </div>
               </div>
             ) : (
-              // Giriş yapılmamışsa (Yapı ve CSS senin yazdığınla aynı)
               <Link
                 className="group flex flex-col items-center gap-1 cursor-pointer"
                 href="/auth/login"
@@ -139,23 +132,26 @@ export default function Navbar() {
                   size={20}
                   className="text-gray-700 group-hover:text-[#F27A1A]"
                 />
-                <span className="text-[11px] font-bold text-gray-700 group-hover:text-[#F27A1A]">
+                {/* Yazı mobilde gizlendi (hidden md:block) */}
+                <span className="hidden md:block text-[11px] font-bold text-gray-700 group-hover:text-[#F27A1A]">
                   Giriş Yap
                 </span>
               </Link>
             )}
 
-            {/* 2. FAVORİLERİM (Her zaman görünür) */}
+            {/* 2. FAVORİLERİM */}
             <button className="group flex flex-col items-center gap-1 cursor-pointer">
               <Heart
                 size={20}
                 className="text-gray-700 group-hover:text-[#F27A1A]"
               />
-              <span className="text-[11px] font-bold text-gray-700 group-hover:text-[#F27A1A]">
+              {/* Yazı mobilde gizlendi (hidden md:block) */}
+              <span className="hidden md:block text-[11px] font-bold text-gray-700 group-hover:text-[#F27A1A]">
                 Favorilerim
               </span>
             </button>
 
+            {/* 3. SEPETİM */}
             <Link
               href="/cart"
               className="group flex flex-col items-center gap-1 relative cursor-pointer"
@@ -164,7 +160,8 @@ export default function Navbar() {
                 size={20}
                 className="text-gray-700 group-hover:text-[#F27A1A]"
               />
-              <span className="text-[11px] font-bold text-gray-700 group-hover:text-[#F27A1A]">
+              {/* Yazı mobilde gizlendi (hidden md:block) */}
+              <span className="hidden md:block text-[11px] font-bold text-gray-700 group-hover:text-[#F27A1A]">
                 Sepetim
               </span>
 
@@ -177,13 +174,26 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Categories Menu */}
-        <div className="mt-4 flex justify-center gap-8 border-t border-gray-50 pt-3">
+        {/* Mobil Search Bar - Sadece mobilde görünür (block md:hidden) */}
+        <div className="relative group block md:hidden mt-3">
+          <input
+            type="text"
+            placeholder="Aradığınız ürün, kategori veya markayı yazınız"
+            className="w-full rounded-md border border-transparent bg-[#f3f3f3] py-2 pl-4 pr-10 text-sm outline-none transition-all focus:border-[#F27A1A] focus:bg-white text-gray-600 group-focus-within:bg-white"
+          />
+          <Search
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-[#F27A1A] cursor-pointer"
+            size={18}
+          />
+        </div>
+
+        {/* Categories Menu - Mobilde yatay kaydırılabilir jilet gibi bir şerit haline getirildi */}
+        <div className="mt-3 md:mt-4 flex gap-6 md:gap-8 border-t border-gray-50 pt-2 md:pt-3 overflow-x-auto no-scrollbar whitespace-nowrap justify-start md:justify-center">
           {NAV_CATEGORIES.map((category) => (
             <Link
               key={category.id}
               href={category.href}
-              className={`text-[13px] font-bold text-[#333] hover:text-[#F27A1A] transition-colors ${pathName === category.href ? "text-[#F27A1A]" : ""}`}
+              className={`text-[12px] md:text-[13px] font-bold text-[#333] hover:text-[#F27A1A] transition-colors inline-block ${pathName === category.href ? "text-[#F27A1A]" : ""}`}
             >
               {category.name}
             </Link>

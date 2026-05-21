@@ -28,17 +28,18 @@ export default function CartPage() {
     return <EmptyCart />;
   }
   return (
-    <main className="container mx-auto max-w-[1200px] px-4 py-8">
-      <div className="flex items-center gap-2 mb-3">
+    <main className="container mx-auto max-w-[1200px] px-4 py-6 md:py-8">
+      <div className="flex items-center gap-2 mb-4">
         <h1 className="font-semibold text-lg">Sepetim</h1>
         <p className="text-sm text-gray-600 ml-1">
           ({isMounted && totalQuantity} Ürün)
         </p>
       </div>
 
-      <div className="flex gap-12 w-full items-start">
+      {/* ANA YAPI: Mobilde alt alta, desktopta (lg) yan yana (flex-col lg:flex-row) */}
+      <div className="flex flex-col lg:flex-row gap-6 lg:gap-12 w-full items-start">
         {/* PRODUCTS AREA */}
-        <div className="flex-1">
+        <div className="w-full lg:flex-1">
           {isMounted &&
             items.map((item, index) => {
               return (
@@ -46,11 +47,12 @@ export default function CartPage() {
                   key={index}
                   className="border border-gray-200 p-3 mb-2 bg-white rounded w-full"
                 >
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-12">
-                      {/* IMAGE */}
-                      <div>
-                        <div className="relative w-16 h-20 border border-gray-100 rounded overflow-hidden shrink-0 bg-white">
+                  {/* ÜRÜN İÇİ: Mobilde dikey, tablet/desktopta (sm) yatay yayılım */}
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 sm:gap-0">
+                    <div className="flex items-start sm:items-center gap-4 md:gap-12">
+                      {/* IMAGE & PRICE LEFT AREA */}
+                      <div className="flex flex-col items-center shrink-0">
+                        <div className="relative w-16 h-20 border border-gray-100 rounded overflow-hidden bg-white">
                           <Image
                             src={item.product.thumbnail}
                             alt={item.product.title}
@@ -60,18 +62,16 @@ export default function CartPage() {
                             className="object-contain p-1"
                           />
                         </div>
-                        <div>
-                          {/* TOTAL PRİCE*/}
-                          <div className="mt-7">
-                            <span className="text-[15px] font-bold text-[#333] block min-w-[90px] text-right">
-                              {(item.product.price * item.quantity).toFixed(2)}{" "}
-                              TL
-                            </span>
-                          </div>
+                        {/* TOTAL PRICE: Mobilde görselin altında, desktopta hizalı kalması sağlandı */}
+                        <div className="mt-2 sm:mt-7">
+                          <span className="text-[14px] sm:text-[15px] font-bold text-[#333] block min-w-[90px] text-left sm:text-right">
+                            {(item.product.price * item.quantity).toFixed(2)} TL
+                          </span>
                         </div>
                       </div>
+
                       {/* ABOUT PRODUCT */}
-                      <div>
+                      <div className="flex-1">
                         <p className="text-[13px] text-[#333] font-normal leading-tight break-words line-clamp-2">
                           <span className="font-bold text-[#333] mr-1.5">
                             TrendyWeb
@@ -87,7 +87,8 @@ export default function CartPage() {
                       </div>
                     </div>
 
-                    <div className="flex gap-12 items-center ">
+                    {/* CONTROLS AREA: Adet Butonları ve Silme Butonu */}
+                    <div className="flex gap-6 sm:gap-12 items-center justify-between sm:justify-end border-t border-gray-50 pt-3 sm:pt-0 sm:border-none">
                       {/* MINUS PLUS BUTTON*/}
                       <div>
                         <div className="border border-gray-200 rounded-lg h-[32px] bg-white text-gray-600 select-none flex items-center px-1 shrink-0">
@@ -132,8 +133,8 @@ export default function CartPage() {
             })}
         </div>
 
-        {/* SUMMARY AREA */}
-        <div className="flex-1">
+        {/* SUMMARY AREA: Mobilde tam genişlik (w-full), desktopta (lg) eski esnekliğine dönüyor */}
+        <div className="w-full lg:flex-1 mt-4 lg:mt-0">
           <div className="bg-white p-4 rounded-lg border border-gray-200 shadow-sm w-full">
             <h2 className="text-[16px] font-bold text-[#333] mb-4">
               Sipariş Özeti
@@ -170,7 +171,7 @@ export default function CartPage() {
               <div className="pt-3">
                 <Link
                   href="/checkout"
-                  className="py-2 px-5 bg-[#F27A1A] text-white rounded-lg font-bold text-[14px] hover:bg-[#d46a16] transition-colors shadow-sm cursor-pointer"
+                  className="py-2.5 px-5 bg-[#F27A1A] text-white rounded-lg font-bold text-[14px] hover:bg-[#d46a16] transition-colors shadow-sm cursor-pointer block text-center w-full sm:w-auto sm:inline-block"
                 >
                   Sepeti Onayla
                 </Link>

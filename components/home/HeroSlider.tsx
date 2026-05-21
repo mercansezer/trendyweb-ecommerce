@@ -74,7 +74,7 @@ export default function HeroSlider() {
               <h2 className="text-xl md:text-4xl font-bold drop-shadow-md">
                 {slide.title}
               </h2>
-              <span className="inline-block mt-2 bg-white text-black px-4 py-1.5 rounded-full text-sm font-semibold hover:bg-[#F27A1A] hover:text-white transition-colors">
+              <span className="inline-block mt-2 mb-3 bg-white text-black px-4 py-1.5 rounded-full text-sm font-semibold hover:bg-[#F27A1A] hover:text-white transition-colors">
                 Alışverişe Başla
               </span>
             </div>

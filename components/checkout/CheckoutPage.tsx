@@ -16,8 +16,7 @@ export default function CheckoutPage() {
 
   const dispatch = useAppDispatch();
 
-  console.log(isProcess);
-
+ 
   useEffect(() => {
     setIsLoaded(true);
   }, []);
