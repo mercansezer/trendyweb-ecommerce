@@ -29,7 +29,7 @@ export default function Navbar() {
       // 1. Önce sunucuya çerezi diyoruz
       await authService.logout();
     } catch (error) {
-      console.error("Çerez silinirken hata oluştu:", error);
+     
     } finally {
       // 2. Her durumda (hata olsa bile) kullanıcıyı yerelde logout yapıyoruz
       dispatch(logout());

@@ -13,7 +13,6 @@ export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   //  Giriş Yapmamış Kullanıcı Korumalı Sayfaya Erişmeye Çalışıyor
-
   const isProtectedRoute = PROTECTED_ROUTES.some((route) =>
     pathname.startsWith(route),
   );
@@ -37,7 +36,6 @@ export function proxy(request: NextRequest) {
   }
 
   // Her şey yolunda, trafiğe izin ver
-
   return NextResponse.next();
 }
 

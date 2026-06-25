@@ -14,7 +14,7 @@ const getHomeData = async () => {
 
     return { categories, displayData, error: false };
   } catch (error) {
-    console.error("Home Data Fetch Error:", error);
+   
     // Hata durumunda boş yapılar dönüyoruz ki sayfa beyaz ekran vermesin
     return {
       categories: [],

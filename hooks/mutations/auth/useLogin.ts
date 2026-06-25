@@ -14,9 +14,10 @@ export const useLogin = (router: AppRouterInstance) => {
 
   const redirectTo = searchParams.get("redirect") || "/";
 
-  console.log(redirectTo);
+
 
   return useMutation<LoginResponse, any, LoginCredentials>({
+    
     mutationFn: async (credentials: LoginCredentials) => {
       const { data } = await axios.post<LoginResponse>(
         "/api/auth/login",

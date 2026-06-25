@@ -16,7 +16,7 @@ export default function ChangePasswordPage() {
   const password = watch("password");
 
   const onSubmit = (data: any) => {
-    console.log("Şifre Değiştirme Verileri:", data);
+   
     // Buraya şifre güncelleme API isteği gelecek
     alert("Şifre sıfırlama talebi gönderildi (Simülasyon)");
   };

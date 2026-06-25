@@ -1,8 +1,9 @@
 "use client";
 
 import { useAuthMe } from "@/hooks/queries/auth/authMe";
-import { useAppDispatch } from "@/store/hooks";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { logout, setCredentials } from "@/store/slices/authSlice";
+import { clearCart } from "@/store/slices/cartSlice";
 import { useEffect } from "react";
 
 export default function AuthProvider({
@@ -11,6 +12,7 @@ export default function AuthProvider({
   children: React.ReactNode;
 }) {
   const dispatch = useAppDispatch();
+
   const { data, isLoading, isError } = useAuthMe();
 
   useEffect(() => {
@@ -34,9 +36,26 @@ export default function AuthProvider({
     }
 
     if (isError) {
+      // 1. Redux state'ini temizle (Arayüz anında giriş yap sayfasına hazırlansın)
       dispatch(logout());
+
+      // 2. Next.js BFF Proxy'sine POST isteği atarak HTTP-Only cookie'leri patlat
+      fetch("/api/auth/logout", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }).catch((err) => {
+        
+      });
     }
   }, [data, isError, dispatch]);
+
+  useEffect(() => {
+    if (!isLoading && !data) {
+      dispatch(clearCart());
+    }
+  }, [data, isLoading, dispatch]);
 
   if (isLoading) {
     return (

@@ -7,16 +7,13 @@ const getInitialCart = (): ICartState => {
     if (savedCart) {
       try {
         return JSON.parse(savedCart);
-      } catch (error) {
-        console.error(error);
-      }
+      } catch (error) {}
     }
   }
   return { items: [], totalQuantity: 0, totalPrice: 0 };
 };
 
 const initialState: ICartState = getInitialCart();
-
 
 // Yardımcı Fonksiyon: Sayıyı kurumsal e-ticaret standartlarında virgülden sonra 2 basamağa yuvarlar
 const formatPrice = (price: number): number => {

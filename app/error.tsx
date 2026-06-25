@@ -1,4 +1,4 @@
-"use client"; // Hata bileşenleri mutlaka Client Component olmalıdır
+"use client";
 
 import { useEffect } from "react";
 import { AlertCircle, RefreshCcw } from "lucide-react";
@@ -10,10 +10,7 @@ export default function Error({
   error: Error & { digest?: string };
   reset: () => void;
 }) {
-  useEffect(() => {
-    // Hatayı console'a basalım (Gerçek projede burası Sentry vb. servise gider)
-    console.error("Kritik Uygulama Hatası:", error);
-  }, [error]);
+  useEffect(() => {}, [error]);
 
   return (
     <div className="flex flex-col items-center justify-center min-h-[70vh] px-4 text-center">

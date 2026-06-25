@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
 export const useAuthMe = () => {
+  
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ["currentUser"],
     queryFn: async () => {

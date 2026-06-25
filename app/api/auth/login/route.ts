@@ -31,7 +31,7 @@ export async function POST(request: Request) {
 
     return res;
   } catch (error: any) {
-    console.error("Login Route Error:", error);
+    
 
     return NextResponse.json(
       { message: error.response?.data?.message || "Giriş başarısız" },
